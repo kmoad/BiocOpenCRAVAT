@@ -1,0 +1,30 @@
+---
+title: "BiocOpenCRAVAT: annotating variants with OpenCRAVAT, using Bioconductor"
+author: Vince Carey^[stvjc@channing.harvard.edu}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BiocOpenCRAVAT overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction to BiocOpenCRAVAT
+
+```{r setup}
+ii = installed.packages()
+avail = rownames(ii)
+if (!("oc2bioc" %in% avail)) BiocManager::install("vjcitn/oc2bioc")
+library(oc2bioc)
+modset = populate_module_set()
+moddf = as.data.frame(modset)
+library(DT)
+datatable(moddf)
+```

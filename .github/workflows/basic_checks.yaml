@@ -64,6 +64,7 @@ jobs:
         run: |
           apt-get update
           apt-get -y install rsync
+          pip install open-cravat
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3

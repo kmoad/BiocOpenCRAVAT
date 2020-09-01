@@ -59,10 +59,12 @@ jobs:
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
           BiocManager::install("reticulate")
-          Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
+          #Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
           library(reticulate)
+          reticulate::install_miniconda()
           cat("running py_config\n")
           py_config()
+          py_install("open-cravat")
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}

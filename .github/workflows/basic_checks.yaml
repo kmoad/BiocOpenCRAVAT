@@ -87,7 +87,7 @@ jobs:
 
       - name: Build pkgdown
         run: |
-           PATH=$PATH:$HOME/bin/ Rscript -e 'pkgdown::build_site(".")'
+           PATH=$PATH:$HOME/bin/ Rscript -e 'system("pip3 install open-cravat", intern=TRUE); pkgdown::build_site(".")'
 
       # deploy needs rsync? Seems so.
       - name: Install deploy dependencies

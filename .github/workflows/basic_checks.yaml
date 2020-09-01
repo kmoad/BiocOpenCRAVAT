@@ -6,6 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      # get open-cravat
+      - name: Install deploy dependencies
+        run: |
+          pip install open-cravat
+
       - name: Query dependencies and update old packages
         run: |
           install.packages('remotes')
@@ -64,7 +69,6 @@ jobs:
         run: |
           apt-get update
           apt-get -y install rsync
-          pip install open-cravat
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3

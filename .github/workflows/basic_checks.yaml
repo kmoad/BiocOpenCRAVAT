@@ -6,7 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
@@ -28,9 +27,10 @@ jobs:
 
       - name: Query dependencies and update old packages
         run: |
-          install.packages('remotes')
+          install.packages(c('remotes', 'reticulate'))
           options(repos = c(CRAN = 'https://cran.r-project.org'))
           BiocManager::install(ask=FALSE)
+          reticulate::py_install('open-cravat')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
         

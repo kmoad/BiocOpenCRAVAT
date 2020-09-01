@@ -23,7 +23,7 @@ jobs:
           export RETICULATE_PYTHON=/__t/Python/3.8.5/x64/bin/python
       - name: show opec
         run: |
-          which python
+          which python3
           python --version
           sudo pip3 show open-cravat
 
@@ -62,7 +62,9 @@ jobs:
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
           Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
+          echo $RETICULATE_PYTHON
           library(reticulate)
+          echo "running py_config"
           py_config()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
           remotes::install_cran("rcmdcheck")

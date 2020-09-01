@@ -25,7 +25,7 @@ jobs:
         run: |
           which python
           python --version
-          pip3 show open-cravat
+          sudo pip3 show open-cravat
 
       - name: Query dependencies and update old packages
         run: |
@@ -33,6 +33,7 @@ jobs:
           options(repos = c(CRAN = 'https://cran.r-project.org'))
           #BiocManager::install(ask=FALSE)
           library(reticulate)
+          use_python("/__t/Python/3.8.5/x64/bin/python")
           py_config()
           reticulate::py_install('open-cravat')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
@@ -61,6 +62,8 @@ jobs:
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          library(reticulate)
+          use_python("/__t/Python/3.8.5/x64/bin/python")
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 

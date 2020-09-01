@@ -23,13 +23,17 @@ jobs:
           sudo pip3 install open-cravat
       - name: show opec
         run: |
+          which python
+          python --version
           pip3 show open-cravat
 
       - name: Query dependencies and update old packages
         run: |
           install.packages(c('remotes', 'reticulate'))
           options(repos = c(CRAN = 'https://cran.r-project.org'))
-          BiocManager::install(ask=FALSE)
+          #BiocManager::install(ask=FALSE)
+          library(reticulate)
+          py_config()
           reticulate::py_install('open-cravat')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}

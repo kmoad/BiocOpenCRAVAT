@@ -58,6 +58,7 @@ jobs:
         run: |
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
+          BiocManager::install("reticulate")
           Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
           library(reticulate)
           cat("running py_config\n")
@@ -69,7 +70,9 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
+        run: |
+          Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
+          rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
         
       - uses: docker/build-push-action@v1

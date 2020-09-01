@@ -18,6 +18,8 @@ jobs:
       - name: Display Python version etc.
         run: |
           python -c "import sys; print(sys.version)"
+          apt-get update
+          apt-get -y install python-dev
           pip3 install psutil
           pip3 install open-cravat
 

@@ -9,7 +9,7 @@ jobs:
       # get open-cravat
       - name: Install deploy dependencies
         run: |
-          pip install open-cravat
+          pip3 install open-cravat
 
       - name: Query dependencies and update old packages
         run: |

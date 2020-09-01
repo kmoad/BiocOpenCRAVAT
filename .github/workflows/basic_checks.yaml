@@ -25,6 +25,7 @@ jobs:
         run: |
           which python3
           python --version
+          python3 --version
           sudo pip3 show open-cravat
 
       - name: Query dependencies and update old packages
@@ -58,9 +59,8 @@ jobs:
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
           Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
-          echo $RETICULATE_PYTHON
           library(reticulate)
-          echo "running py_config"
+          cat("running py_config\n")
           py_config()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
           remotes::install_cran("rcmdcheck")

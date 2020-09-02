@@ -5,34 +5,12 @@ jobs:
     container: bioconductor/bioconductor_docker:devel
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python 3.x
-        uses: actions/setup-python@v2
-        with:
-          # Semantic version range syntax or exact version of a Python version
-          python-version: '3.8' 
-          # Optional - x64 or x86 architecture, defaults to x64
-          architecture: 'x64' 
-      # You can test your matrix by printing the current Python version
-      - name: Display Python version etc.
-        run: |
-          python -c "import sys; print(sys.version)"
-          apt-get update
-          apt-get -y install python3-dev
-          sudo pip3 install psutil==5.6
-          sudo pip3 install open-cravat
-          export RETICULATE_PYTHON=/__t/Python/3.8.5/x64/bin/python
-      - name: show opec
-        run: |
-          which python3
-          python --version
-          python3 --version
-          sudo pip3 show open-cravat
 
       - name: Query dependencies and update old packages
         run: |
-          install.packages(c('remotes'))
+          install.packages('remotes')
           options(repos = c(CRAN = 'https://cran.r-project.org'))
-          #BiocManager::install(ask=FALSE)
+          BiocManager::install(ask=FALSE)
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
         
@@ -58,13 +36,6 @@ jobs:
         run: |
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
-          BiocManager::install("reticulate")
-          #Sys.setenv(RETICULATE_PYTHON="/__t/Python/3.8.5/x64/bin/python")
-          library(reticulate)
-          reticulate::install_miniconda()
-          cat("running py_config\n")
-          py_config()
-          system("pip3 install open-cravat", intern=TRUE)
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
@@ -72,8 +43,7 @@ jobs:
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: |
-          rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
+        run: rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
         
       - uses: docker/build-push-action@v1
@@ -87,7 +57,7 @@ jobs:
 
       - name: Build pkgdown
         run: |
-           PATH=$PATH:$HOME/bin/ Rscript -e 'system("pip3 install open-cravat", intern=TRUE); pkgdown::build_site(".")'
+           PATH=$PATH:$HOME/bin/ Rscript -e 'pkgdown::build_site(".")'
 
       # deploy needs rsync? Seems so.
       - name: Install deploy dependencies

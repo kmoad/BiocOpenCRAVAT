@@ -1,6 +1,6 @@
 Package: BiocOpenCRAVAT
 Title: Interface between Bioconductor and OpenCRAVAT
-Version: 0.0.0
+Version: 0.0.1
 Authors@R: 
     person(given = "Vincent",
            family = "Carey",

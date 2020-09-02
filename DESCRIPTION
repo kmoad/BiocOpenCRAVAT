@@ -22,6 +22,7 @@ Suggests:
     rmarkdown,
     pkgdown,
     DT
+Remotes: vjcitn/oc2bioc
 URL: https://vjcitn.github.io/BiocOpenCRAVAT/
 BugReports: https://github.com/vjcitn/BiocOpenCRAVAT/issues/new/choose
 VignetteBuilder: knitr

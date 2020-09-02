@@ -1,6 +1,6 @@
 Package: BiocOpenCRAVAT
 Title: Interface between Bioconductor and OpenCRAVAT
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: 
     person(given = "Vincent",
            family = "Carey",
@@ -16,7 +16,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Depends: 
-    Biobase
+    Biobase, oc2bioc
 Suggests: 
     knitr,
     rmarkdown,

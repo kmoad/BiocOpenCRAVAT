@@ -16,12 +16,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction to BiocOpenCRAVAT
+# Introduction to BiocOpenCRAVA
+
+The oc2bioc package incorporates the open-cravat python modules.
+We can acquire the metadata for all OpenCRAVAT 'modules' in real time
+using `populate_module_set`.
 
 ```{r setup}
-ii = installed.packages()
-avail = rownames(ii)
-if (!("oc2bioc" %in% avail)) BiocManager::install("vjcitn/oc2bioc")
 library(oc2bioc)
 modset = populate_module_set()
 moddf = as.data.frame(modset)

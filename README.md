@@ -22,6 +22,6 @@ docker run -ti vjcitn/biocopencravat bash
 ```
 
 Start R and then do `library(oc2bioc)`.  Only one open-cravat python module is currently
-exposed, `cravat.admin_util$search_remote`, which is called with argument `(".*")` in
+exposed, `cravat.admin_util.search_remote`, which is called with argument `(".*")` in
 `populate_module_set`.  Further work will expose more functionality.
 

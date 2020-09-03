@@ -1,5 +1,5 @@
 ---
-title: "BiocOpenCRAVAT: annotating variants with OpenCRAVAT, using Bioconductor"
+title: "Annotating variants with OpenCRAVAT, using Bioconductor"
 author: Vince Carey^[stvjc@channing.harvard.edu}
 output: rmarkdown::html_vignette
 vignette: >

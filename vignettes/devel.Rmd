@@ -1,0 +1,81 @@
+---
+title: "oc2bioc -- notes for developers"
+author: Vince Carey^[stvjc@channing.harvard.edu}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Developer-level information on oc2bioc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Interacting with the open-cravat infrastructure
+
+The `oc2bioc` package (currently at
+github.com/vjcitn/oc2bioc) incorporates the open-cravat python modules.
+In the main user vignette we invoke `populate_module_set`, to
+learn about available modules in the OpenCRAVAT system.
+The `oc2bioc` package will grow
+to include formal interfaces to other key feature of OpenCRAVAT.
+
+## Formal interfacing using basilisk
+
+Let's have a look at `populate_module_set`:
+```{r lklk}
+library(oc2bioc)
+populate_module_set
+```
+
+While this structure may appear complex, it is
+schematic and easily thought of as a template.  The purpose
+of the basilisk package functions is isolation of the 
+open-cravat code and its dependencies to a mutually
+consistent environment.
+
+## Informal view of capabilities using reticulate
+
+In order to understand the features of the open-cravat
+python stack, we can use reticulate on any system in which
+open-cravat is installed and accessible via PYTHONPATH.
+
+Below we see how to use reticulate to interrogate the `cravat`
+module and its submodules from R.  There is a lot of software
+in this stack.  Choosing functions to expose in R/Bioconductor
+is a long-term project to be driven by user interest.
+
+```
+> library(reticulate)
+1/5 packages newly attached/loaded, see sessionInfo() for details.
+> cr = import("cravat")
+> names(cr)
+ [1] "admin_util"             "aggregator"             "BadFormatError"        
+ [4] "base_annotator"         "base_commonmodule"      "base_converter"        
+ [7] "base_mapper"            "base_postaggregator"    "BaseAnnotator"         
+[10] "BaseCommonModule"       "BaseConverter"          "BaseMapper"            
+[13] "BasePostAggregator"     "config_loader"          "ConfigLoader"          
+[16] "ConfigurationError"     "constants"              "Cravat"                
+[19] "cravat_class"           "cravat_filter"          "cravat_report"         
+[22] "cravat_util"            "CravatFilter"           "CravatProfileException"
+[25] "CravatReport"           "crx_def"                "exceptions"            
+[28] "ExpectedException"      "FileIntegrityError"     "get_live_annotator"    
+[31] "get_live_mapper"        "get_module"             "get_ucsc_bins"         
+[34] "get_wgs_reader"         "inout"                  "InvalidData"           
+[37] "InvalidReporter"        "KillInstallException"   "LiftoverFailure"       
+[40] "LiveAnnotator"          "mp_runners"             "raise_break"           
+[43] "reverse_complement"     "run"                    "run_reporter"          
+[46] "signal"                 "store_utils"            "switch_strand"         
+[49] "translate_codon"        "util"                   "wgs"                   
+> cr$admin_util
+Module(cravat.admin_util)
+> head(names(cr$admin_util))
+[1] "change_password" "check_login"     "compare_version" "constants"      
+[5] "copy"            "create_account" 
+```
+

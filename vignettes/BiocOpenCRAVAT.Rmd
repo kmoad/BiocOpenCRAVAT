@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Introduction to BiocOpenCRAVA
+# Introduction to BiocOpenCRAVAT
 
-The oc2bioc package incorporates the open-cravat python modules.
+The oc2bioc package (currently at
+github.com/vjcitn/oc2bioc) incorporates the open-cravat python modules.
 We can acquire the metadata for all OpenCRAVAT 'modules' in real time
 using `populate_module_set`.
 

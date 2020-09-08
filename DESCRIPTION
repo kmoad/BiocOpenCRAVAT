@@ -1,6 +1,6 @@
 Package: BiocOpenCRAVAT
 Title: Interface between Bioconductor and OpenCRAVAT
-Version: 0.0.6
+Version: 0.0.8
 Authors@R: 
     person(given = "Vincent",
            family = "Carey",
@@ -19,7 +19,7 @@ Depends:
     Biobase, oc2bioc
 Suggests: 
     knitr, httr, listviewer,
-    rmarkdown,
+    rmarkdown, rjson,
     pkgdown,
     DT
 Remotes: vjcitn/oc2bioc

@@ -54,8 +54,7 @@ and password.
 
 An example API response is available in `var_in_tx` in the
 `oc2bioc` package.  This was returned by the call
-`queryOC(chr=""chr7", pos="140753336", annotators=c("pubmed", "segway_breast", 
-    "chasmplus_BRCA"))
+`queryOC(chr="chr7", pos="140753336", annotators=c("pubmed", "segway_breast", "chasmplus_BRCA"))`
 ```{r lkex}
 var_in_tx
 ```
@@ -67,4 +66,15 @@ names(vcon)
 A collapsible tree representation is easy to produce:
 ```{r dolv}
 listviewer::jsonedit(vcon, height=200L)
+```
+
+Click [here](`r vcon$pubmed$term`) for the
+PubMed references related to the gene harboring the
+query variant.
+
+The `crx` component of the response provides information
+on variant impacts at the transcript level.
+```{r lkcrx}
+nl = rjson::fromJSON(vcon$crx$all_mappings)
+data.frame(do.call(rbind, unlist(nl, recursive=FALSE)))
 ```

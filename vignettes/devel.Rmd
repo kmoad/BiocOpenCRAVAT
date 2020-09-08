@@ -39,7 +39,7 @@ of the basilisk package functions is isolation of the
 open-cravat code and its dependencies to a mutually
 consistent environment.
 
-## Informal view of capabilities using reticulate
+## Informal view of capabilities of the pythopn stack using reticulate
 
 In order to understand the features of the open-cravat
 python stack, we can use reticulate on any system in which
@@ -79,3 +79,8 @@ Module(cravat.admin_util)
 [5] "copy"            "create_account" 
 ```
 
+## Interacting with the REST API for local deployments
+
+See the documentation for `queryOC` in the `oc2bioc` package for
+information on how RESTful queries can be resolved with locally
+installed annotators.

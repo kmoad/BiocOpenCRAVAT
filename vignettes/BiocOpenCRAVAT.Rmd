@@ -20,14 +20,40 @@ knitr::opts_chunk$set(
 
 The oc2bioc package (currently at
 github.com/vjcitn/oc2bioc) incorporates the open-cravat python modules.
-We can acquire the metadata for all OpenCRAVAT 'modules' in real time
+
+## Displaying and searching the resources
+
+We acquire the metadata for all OpenCRAVAT 'modules' in real time
 using `populate_module_set`.
 
 ```{r setup}
 library(oc2bioc)
 modset = populate_module_set()
+modset
+```
+We transformed the module set object to a searchable HTML table:
+```{r displ,echo=FALSE}
 moddf = as.data.frame(modset)
-library(DT)
-datatable(moddf)
+moddf$description = gsub("In both the graphical interface..*", "", moddf$description)
+MAXDESCLEN=85
+lng = which(nchar(moddf$description)>MAXDESCLEN)
+if (length(lng)>0) {
+  moddf$description[lng] = paste0(substr(moddf$description[lng],1,MAXDESCLEN), "...")
+  }
+suppressPackageStartupMessages(suppressMessages(library(DT)))
+datatable(moddf, options=list(lengthMenu=c(5,10,25,100)))
 ```
 
+## Single-variant queries
+
+The `queryOC` function uses the OpenCRAVAT REST API to acquire
+information on a single position in GRCh38 coordinates.  This
+function requires that a registered username and password
+be supplied.  Visit `run.opencravat.org` to set a username
+and password.
+
+An example API response is available in `var_in_tx` in the
+`oc2bioc` package:
+```{r lkex}
+var_in_tx
+```

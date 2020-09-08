@@ -53,7 +53,18 @@ be supplied.  Visit `run.opencravat.org` to set a username
 and password.
 
 An example API response is available in `var_in_tx` in the
-`oc2bioc` package:
+`oc2bioc` package.  This was returned by the call
+`queryOC(chr=""chr7", pos="140753336", annotators=c("pubmed", "segway_breast", 
+    "chasmplus_BRCA"))
 ```{r lkex}
 var_in_tx
+```
+We use `httr::content` to explore this result.
+```{r lkc}
+vcon = httr::content(var_in_tx)
+names(vcon)
+```
+A collapsible tree representation is easy to produce:
+```{r dolv}
+listviewer::jsonedit(vcon, height=200L)
 ```

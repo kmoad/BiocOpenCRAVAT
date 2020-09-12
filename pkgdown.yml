@@ -1,8 +1,10 @@
 pandoc: 2.7.3
-pkgdown: 1.6.0
+pkgdown: 1.6.1
 pkgdown_sha: ~
-articles: []
-last_built: 2020-09-10T20:29Z
+articles:
+  BiocOpenCRAVAT: BiocOpenCRAVAT.html
+  devel: devel.html
+last_built: 2020-09-12T14:37Z
 urls:
   reference: https://seandavi.github.io/sars2pack/reference
   article: https://seandavi.github.io/sars2pack/articles

@@ -6,6 +6,7 @@ vignette: >
   %\VignetteIndexEntry{BiocOpenCRAVAT overview}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: bcoc.bib
 ---
 
 
@@ -20,6 +21,12 @@ knitr::opts_chunk$set(
 
 The oc2bioc package (currently at
 github.com/vjcitn/oc2bioc) incorporates the open-cravat python modules.
+This workshop takes advantage of R functions and interfaces defined
+in that package to illustrate the programmatic use of OpenCRAVAT
+in R/Bioconductor.
+
+Case studies of the use of the OpenCRAVAT GUI are published
+in a Journal of Clinical Oncology article (@Pagel2020).
 
 ## Displaying and searching the resources
 
@@ -78,3 +85,5 @@ on variant impacts at the transcript level.
 nl = rjson::fromJSON(vcon$crx$all_mappings)
 data.frame(do.call(rbind, unlist(nl, recursive=FALSE)))
 ```
+
+# References

@@ -18,10 +18,20 @@ use this package by pulling the vjcitn/biocopencravat docker container and runni
 it via
 
 ```
+# bash version
 docker run -ti vjcitn/biocopencravat bash
 ```
+or
+```
+# rstudio version
+docker run -e PASSWORD=<choose a password> -p 8787:8787 vjcitn/biocopencravat
+```
 
-Start R and then do `library(oc2bioc)`.  Only one open-cravat python module is currently
+For the `bash` version,
+start R and then do `library(oc2bioc)`.  Only one open-cravat python module is currently
 exposed, `cravat.admin_util.search_remote`, which is called with argument `(".*")` in
 `populate_module_set`.  Further work will expose more functionality.
 
+For the rstudio version, point a browser to `localhost:8787` and use
+`rstudio` as username, and whatever you chose for `PASSWORD` as
+password.  `library(oc2bioc)` will succeed.

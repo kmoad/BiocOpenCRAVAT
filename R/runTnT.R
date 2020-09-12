@@ -5,6 +5,8 @@
 #' @import GenomicRanges
 #' @import MultiAssayExperiment
 #' @import ensembldb
+#' @import RaggedExperiment
+#' @import Biobase
 #' @import EnsDb.Hsapiens.v75
 #' @importFrom grDevices rainbow
 #' @param sitecode character(1) TCGA code, defaults to "ACC"
@@ -21,7 +23,7 @@ TnTdemo = function(sitecode="ACC", chr="11", viewstart=6e7,
 acc = curatedTCGAData::curatedTCGAData(sitecode, "Mutation", dry.run=FALSE,
     verbose=verbose) 
 ra = MultiAssayExperiment::experiments(acc)[[1]]
-rr11 = rowRanges(ra)[which(seqnames(rowRanges(ra))==chr)]
+rr11 = rowRanges(ra)[which(as.character(seqnames(rowRanges(ra)))==chr)]
 genome(rr11) = "GRCh37"
 #
 # obtain exons

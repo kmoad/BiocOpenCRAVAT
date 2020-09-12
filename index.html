@@ -99,8 +99,13 @@
 <li>See the Articles button for additional documents on the OpenCRAVAT/Bioconductor interface</li>
 </ul>
 <p>The oc2bioc R package interfaces the open-cravat Python stack to R. You can use this package by pulling the vjcitn/biocopencravat docker container and running it via</p>
-<pre><code>docker run -ti vjcitn/biocopencravat bash</code></pre>
-<p>Start R and then do <code>library(oc2bioc)</code>. Only one open-cravat python module is currently exposed, <code>cravat.admin_util.search_remote</code>, which is called with argument <code>(".*")</code> in <code>populate_module_set</code>. Further work will expose more functionality.</p>
+<pre><code># bash version
+docker run -ti vjcitn/biocopencravat bash</code></pre>
+<p>or</p>
+<pre><code># rstudio version
+docker run -e PASSWORD=&lt;choose a password&gt; -p 8787:8787 vjcitn/biocopencravat</code></pre>
+<p>For the <code>bash</code> version, start R and then do <code>library(oc2bioc)</code>. Only one open-cravat python module is currently exposed, <code>cravat.admin_util.search_remote</code>, which is called with argument <code>(".*")</code> in <code>populate_module_set</code>. Further work will expose more functionality.</p>
+<p>For the rstudio version, point a browser to <code>localhost:8787</code> and use <code>rstudio</code> as username, and whatever you chose for <code>PASSWORD</code> as password. <code>library(oc2bioc)</code> will succeed.</p>
 </div>
   </div>
 

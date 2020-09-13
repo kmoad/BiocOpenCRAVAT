@@ -9,6 +9,7 @@
 #' @import Biobase
 #' @import EnsDb.Hsapiens.v75
 #' @importFrom grDevices rainbow
+#' @param mae instance of MultiAssayExperiment, defaults to NULL
 #' @param sitecode character(1) TCGA code, defaults to "ACC"
 #' @param chr character(1) chromosome for variant request, defaults to "11"
 #' @param viewstart numeric(1) leftmost basepair to view, defaults to 6e7
@@ -17,12 +18,15 @@
 #' @note Mutation component is extracted from MultiAssayExperiment, and
 #' rowRanges method used to obtain addresses of recorded somatic mutations.
 #' Non-SNV mutations are dropped.
+#' @return TnT::TnTGenome
 #' @export
-TnTdemo = function(sitecode="ACC", chr="11", viewstart=6e7,
+TnTdemo = function(mae=NULL, sitecode="ACC", chr="11", viewstart=6e7,
         viewend=7e7, verbose=TRUE) {
-acc = curatedTCGAData::curatedTCGAData(sitecode, "Mutation", dry.run=FALSE,
+if (is.null(mae)) {
+mae = curatedTCGAData::curatedTCGAData(sitecode, "Mutation", dry.run=FALSE,
     verbose=verbose) 
-ra = MultiAssayExperiment::experiments(acc)[[1]]
+}
+ra = MultiAssayExperiment::experiments(mae)[[1]]
 rr11 = rowRanges(ra)[which(as.character(seqnames(rowRanges(ra)))==chr)]
 genome(rr11) = "GRCh37"
 #
@@ -53,6 +57,5 @@ ensGeneTrack <- TnT::FeatureTrack(gene,
 # viz
 #
 mytt = GRanges(chr, IRanges(viewstart,viewend))
-print(TnT::TnTGenome(list(pt,copt,ensGeneTrack), view.range=mytt))
-invisible(ra)
+TnT::TnTGenome(list(pt,copt,ensGeneTrack), view.range=mytt)
 }

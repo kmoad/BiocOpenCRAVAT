@@ -5,6 +5,7 @@
 \title{Illustration of variant vizualization with TnT}
 \usage{
 TnTdemo(
+  mae = NULL,
   sitecode = "ACC",
   chr = "11",
   viewstart = 6e+07,
@@ -13,6 +14,8 @@ TnTdemo(
 )
 }
 \arguments{
+\item{mae}{instance of MultiAssayExperiment, defaults to NULL}
+
 \item{sitecode}{character(1) TCGA code, defaults to "ACC"}
 
 \item{chr}{character(1) chromosome for variant request, defaults to "11"}
@@ -22,6 +25,9 @@ TnTdemo(
 \item{viewend}{numeric(1) rightmost basepair to view, defaults to 7e7}
 
 \item{verbose}{logical(1) passed to curatedTCGAData::curatedTCGAData}
+}
+\value{
+TnT::TnTGenome
 }
 \description{
 Illustration of variant vizualization with TnT

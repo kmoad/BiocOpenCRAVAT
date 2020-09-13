@@ -35,3 +35,6 @@ exposed, `cravat.admin_util.search_remote`, which is called with argument `(".*"
 For the rstudio version, point a browser to `localhost:8787` and use
 `rstudio` as username, and whatever you chose for `PASSWORD` as
 password.  `library(oc2bioc)` will succeed.
+
+Have a look at the vignette at
+[Get started](https://vjcitn.github.io/BiocOpenCRAVAT/articles/BiocOpenCRAVAT.html) for more details.

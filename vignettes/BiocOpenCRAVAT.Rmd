@@ -1,9 +1,9 @@
 ---
 title: "Annotating variants with OpenCRAVAT, using Bioconductor"
-author: Vince Carey^[stvjc@channing.harvard.edu}
+author: Vince Carey^[stvjc@channing.harvard.edu]
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{BiocOpenCRAVAT overview}
+  %\VignetteIndexEntry{Annotating variants with OpenCRAVAT, using Bioconductor}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: bcoc.bib
@@ -15,6 +15,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+suppressPackageStartupMessages({
+library(oc2bioc)
+library(DT)
+library(curatedTCGAData)
+library(BiocOpenCRAVAT)
+})
 ```
 
 # Introduction to BiocOpenCRAVAT
@@ -70,9 +76,10 @@ We use `httr::content` to explore this result.
 vcon = httr::content(var_in_tx)
 names(vcon)
 ```
-A collapsible tree representation is easy to produce:
+A peek at the result:
 ```{r dolv}
-listviewer::jsonedit(vcon, height=200L)
+names(vcon)
+str(head(vcon,3))
 ```
 
 Click [here](`r vcon$pubmed$term`) for the
@@ -83,7 +90,50 @@ The `crx` component of the response provides information
 on variant impacts at the transcript level.
 ```{r lkcrx}
 nl = rjson::fromJSON(vcon$crx$all_mappings)
-data.frame(do.call(rbind, unlist(nl, recursive=FALSE)))
+DT::datatable(data.frame(do.call(rbind, unlist(nl, recursive=FALSE))))
 ```
+
+## Viewing and assembling collections of variants for annotation
+
+We'll use TCGA as a source of realistic variant sets.
+The curatedTCGAData package will be used.
+
+### Acquiring variants and filtering to SNVs
+
+```{r docur}
+library(curatedTCGAData)
+suppressMessages({
+acc = curatedTCGAData("ACC", assays="Mutation", dry.run=FALSE,
+   cache=BiocFileCache::bfccache(BiocFileCache::BiocFileCache(ask=FALSE)))
+})
+eacc = experiments(acc)[[1]]
+eacc
+muts = as(eacc, "GRangesList")
+sum(elementNROWS(muts))
+DT::datatable(as.data.frame(head(muts[[1]][,1:4])))
+```
+Notice that there is a variant with width 24.  We will
+focus on single-nucleotide variants (SNVs).
+```{r dosn}
+snvs = muts[width(muts)==1]
+sum(elementNROWS(snvs))
+```
+
+We will use a function based on
+the TnT package to visualize variant locations
+in the context of gene-like features.
+
+Here's a 1Mb slice:
+```{r dodod}
+library(BiocOpenCRAVAT)
+TnTdemo(acc, viewstart=6.4e7, viewend=6.5e7)
+```
+
+Now we drill down a bit, to a 0.1Mb region near MAP4K2:
+```{r dododo}
+TnTdemo(acc, viewstart=6.455e7, viewend=6.465e7)
+```
+
+
 
 # References

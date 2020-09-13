@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">BiocOpenCRAVAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -106,6 +106,7 @@ docker run -ti vjcitn/biocopencravat bash</code></pre>
 docker run -e PASSWORD=&lt;choose a password&gt; -p 8787:8787 vjcitn/biocopencravat</code></pre>
 <p>For the <code>bash</code> version, start R and then do <code>library(oc2bioc)</code>. Only one open-cravat python module is currently exposed, <code>cravat.admin_util.search_remote</code>, which is called with argument <code>(".*")</code> in <code>populate_module_set</code>. Further work will expose more functionality.</p>
 <p>For the rstudio version, point a browser to <code>localhost:8787</code> and use <code>rstudio</code> as username, and whatever you chose for <code>PASSWORD</code> as password. <code>library(oc2bioc)</code> will succeed.</p>
+<p>Have a look at the vignette at <a href="https://vjcitn.github.io/BiocOpenCRAVAT/articles/BiocOpenCRAVAT.html">Get started</a> for more details.</p>
 </div>
   </div>
 

@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BiocOpenCRAVAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
       </span>
     </div>
 
@@ -143,6 +143,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>TnTdemo</span>(
+  mae = <span class='kw'>NULL</span>,
   sitecode = <span class='st'>"ACC"</span>,
   chr = <span class='st'>"11"</span>,
   viewstart = <span class='fl'>6e+07</span>,
@@ -153,6 +154,10 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>mae</th>
+      <td><p>instance of MultiAssayExperiment, defaults to NULL</p></td>
+    </tr>
     <tr>
       <th>sitecode</th>
       <td><p>character(1) TCGA code, defaults to "ACC"</p></td>
@@ -175,6 +180,9 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>TnT::TnTGenome</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Mutation component is extracted from MultiAssayExperiment, and

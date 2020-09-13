@@ -3,7 +3,7 @@ title: "oc2bioc -- notes for developers"
 author: Vince Carey^[stvjc@channing.harvard.edu}
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Developer-level information on oc2bioc}
+  %\VignetteIndexEntry{oc2bioc -- notes for developers}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

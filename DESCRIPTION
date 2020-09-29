@@ -21,7 +21,7 @@ Suggests:
     knitr, httr, listviewer,
     rmarkdown, rjson,
     pkgdown, BiocFileCache,
-    DT
+    DT, dplyr
 Imports: curatedTCGAData, TnT, GenomeInfoDb,
     GenomicRanges, MultiAssayExperiment, ensembldb,
     EnsDb.Hsapiens.v75, grDevices, RaggedExperiment

@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BiocOpenCRAVAT</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.12</span>
       </span>
     </div>
 
@@ -109,10 +109,10 @@
 <a href="#formal-interfacing-using-basilisk" class="anchor"></a>Formal interfacing using basilisk</h2>
 <p>Let’s have a look at <code>populate_module_set</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw">oc2bioc</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">oc2bioc</span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: reticulate</span>
 <span class="co">#&gt; Loading required package: httr</span>
-<span class="kw">populate_module_set</span>
+<span class="va">populate_module_set</span>
 <span class="co">#&gt; function () </span>
 <span class="co">#&gt; {</span>
 <span class="co">#&gt;     proc = basilisk::basiliskStart(ocbenv)</span>
@@ -131,9 +131,8 @@
 <span class="co">#&gt;         new("OpenCRAVATModuleSet", modset = vals, created = date())</span>
 <span class="co">#&gt;     })</span>
 <span class="co">#&gt; }</span>
-<span class="co">#&gt; &lt;bytecode: 0x557f1915eec0&gt;</span>
-<span class="co">#&gt; &lt;environment: namespace:oc2bioc&gt;</span>
-</pre></div>
+<span class="co">#&gt; &lt;bytecode: 0x55ea6a224058&gt;</span>
+<span class="co">#&gt; &lt;environment: namespace:oc2bioc&gt;</span></pre></div>
 <p>While this structure may appear complex, it is schematic and easily thought of as a template. The purpose of the basilisk package functions is isolation of the open-cravat code and its dependencies to a mutually consistent environment.</p>
 </div>
 <div id="informal-view-of-capabilities-of-the-python-stack-using-reticulate" class="section level2">

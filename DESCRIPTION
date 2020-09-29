@@ -1,6 +1,6 @@
 Package: BiocOpenCRAVAT
 Title: Interface between Bioconductor and OpenCRAVAT
-Version: 0.0.10
+Version: 0.0.12
 Authors@R: 
     person(given = "Vincent",
            family = "Carey",
@@ -20,7 +20,7 @@ Depends:
 Suggests: 
     knitr, httr, listviewer,
     rmarkdown, rjson,
-    pkgdown,
+    pkgdown, BiocFileCache,
     DT
 Imports: curatedTCGAData, TnT, GenomeInfoDb,
     GenomicRanges, MultiAssayExperiment, ensembldb,

@@ -115,9 +115,11 @@ DT::datatable(as.data.frame(head(muts[[1]][,1:4])))
 Notice that there is a variant with width 24.  We will
 focus on single-nucleotide variants (SNVs).
 ```{r dosn}
-snvs = muts[width(muts)==1]
+snvs = unlist(muts[width(muts)==1])
 sum(elementNROWS(snvs))
 ```
+
+### Visualizing variants in the context of gene models
 
 We will use a function based on
 the TnT package to visualize variant locations
@@ -133,6 +135,27 @@ Now we drill down a bit, to a 0.1Mb region near MAP4K2:
 ```{r dododo}
 TnTdemo(acc, viewstart=6.455e7, viewend=6.465e7)
 ```
+
+## Annotating a large collection of variants
+
+We use the function `make_oc_POSTable` to transform
+a GRanges instance into a data.frame that can be
+saved to a file and submitted to the OpenCRAVAT API.
+
+```{r lksnpo}
+mdf = make_oc_POSTable(snvs)
+head(mdf)
+```
+
+The data.frame must be formatted for ingestion by OpenCRAVAT.
+The following call to write.table will accomplish this.
+```{r dor}
+tf = tempfile()
+write.table(mdf, file=tf, sep="\t", col.names=FALSE, 
+   row.names=FALSE, quote=FALSE)
+head(read.delim(tf, h=FALSE, sep="\t"))
+```
+
 
 
 

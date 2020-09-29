@@ -38,7 +38,8 @@ jobs:
           BiocManager::repositories()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
           remotes::install_cran("rcmdcheck")
-          oc2bioc::populate_module_set()
+          oc2bioc::populate_module_set()  # gets the basic installation going
+          lapply(oc2bioc::key_modules(), oc2bioc::install_oc_module)  # image may get fat
         shell: Rscript {0}
 
       - name: Check

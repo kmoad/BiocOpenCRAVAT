@@ -2,7 +2,7 @@ on: [push]
 jobs:
   job1:
     runs-on: ubuntu-latest
-    container: bioconductor/bioconductor_docker:devel
+    container: us.gcr.io/anvil-gcr-public/anvil-rstudio-bioconductor:0.0.6
     steps:
       - uses: actions/checkout@v1
 
@@ -56,7 +56,7 @@ jobs:
           repository: vjcitn/biocopencravat
           tag_with_ref: true
           tag_with_sha: true
-          tags: 0.0.4
+          tags: 0.0.7
 
       - name: Build pkgdown
         run: |

@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   BiocOpenCRAVAT: BiocOpenCRAVAT.html
   devel: devel.html
-last_built: 2020-09-29T15:53Z
+last_built: 2020-09-30T00:02Z
 urls:
   reference: https://seandavi.github.io/sars2pack/reference
   article: https://seandavi.github.io/sars2pack/articles

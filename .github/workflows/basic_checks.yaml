@@ -40,6 +40,7 @@ jobs:
           remotes::install_cran("rcmdcheck")
           oc2bioc::populate_module_set()  # gets the basic installation going
           lapply(oc2bioc::key_modules(), oc2bioc::install_oc_module)  # image may get fat
+          system(paste(oc2bioc::path_to_oc_executable(), "module ls"), intern=TRUE)
         shell: Rscript {0}
 
       - name: Check
@@ -55,7 +56,7 @@ jobs:
           repository: vjcitn/biocopencravat
           tag_with_ref: true
           tag_with_sha: true
-          tags: latest
+          tags: 0.0.4
 
       - name: Build pkgdown
         run: |
